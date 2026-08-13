@@ -1,0 +1,448 @@
+/* ============================================================
+   Valora Finanzas — Design System (DESIGN.md)
+   "Deep Sea to Electric Neon" · Material Design 3 · Glassmorphism
+   ============================================================ */
+
+:root {
+  /* ---- Colores (design tokens) ---- */
+  --background: #101418;
+  --surface: #101418;
+  --surface-dim: #101418;
+  --surface-bright: #363a3e;
+  --surface-container-lowest: #0b0f13;
+  --surface-container-low: #181c20;
+  --surface-container: #1c2024;
+  --surface-container-high: #262a2f;
+  --surface-container-highest: #31353a;
+  --on-surface: #e0e3e8;
+  --on-surface-variant: #b9cbbc;
+  --outline: #849587;
+  --outline-variant: #3b4a3f;
+
+  --primary: #f4fff3;
+  --on-primary: #00391f;
+  --primary-container: #00ff9d;
+  --on-primary-container: #007143;
+  --primary-fixed: #56ffa8;
+  --primary-fixed-dim: #00e38b;
+
+  --secondary: #bdf4ff;
+  --on-secondary: #00363d;
+  --secondary-container: #00e3fd;
+  --on-secondary-container: #00616d;
+
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  /* ---- Tipografía ---- */
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* ---- Radios ---- */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ---- Sombras ---- */
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 24px rgba(0, 255, 157, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--secondary-container);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-fixed-dim);
+}
+
+/* ============================================================
+   Tipografía
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-lg {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.text-headline-lg-mobile {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.text-title-md {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.text-body-md {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text-label-sm {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.text-on-surface {
+  color: var(--on-surface);
+}
+
+.text-on-surface-variant {
+  color: var(--on-surface-variant);
+}
+
+.text-primary-container {
+  color: var(--primary-container);
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   Iconos (Material Symbols)
+   ============================================================ */
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  user-select: none;
+}
+
+.material-symbols-outlined--filled {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* ============================================================
+   Contenedores y tarjetas
+   ============================================================ */
+
+.glass-card {
+  background-color: var(--surface-container);
+  border: 1px solid color-mix(in srgb, var(--outline-variant) 30%, transparent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-card--inner-stroke {
+  box-shadow:
+    var(--shadow-card),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 32px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 16px;
+  }
+}
+
+/* ============================================================
+   Formularios
+   ============================================================ */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field__label {
+  color: var(--on-surface-variant);
+}
+
+.form-field__input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.form-field__input-group:focus-within {
+  border-color: var(--primary-container);
+  box-shadow: 0 0 0 1px var(--primary-container);
+}
+
+.form-field__icon {
+  color: var(--on-surface-variant);
+  margin-left: 16px;
+  font-size: 20px;
+}
+
+.form-field__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px;
+}
+
+.form-field__input::placeholder {
+  color: color-mix(in srgb, var(--on-surface-variant) 60%, transparent);
+}
+
+.form-field__toggle {
+  background: none;
+  border: none;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.form-field__toggle:hover {
+  color: var(--on-surface);
+}
+
+.form-field--error .form-field__input-group {
+  border-color: var(--error);
+  box-shadow: 0 0 0 1px var(--error);
+}
+
+.form-field__hint {
+  color: var(--error);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input::placeholder {
+  color: color-mix(in srgb, var(--on-surface-variant) 60%, transparent);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-container);
+  box-shadow: 0 0 0 1px var(--primary-container);
+}
+
+.input--error {
+  border-color: var(--error);
+}
+
+/* ============================================================
+   Botones
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--sm {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.btn--primary {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--primary-fixed);
+}
+
+.btn--primary:focus-visible {
+  outline: 2px solid var(--primary-container);
+  outline-offset: 2px;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--secondary-container);
+  border: 1px solid var(--secondary-container);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--secondary-container) 12%, transparent);
+}
+
+.btn--danger {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--error) 12%, transparent);
+}
+
+.btn--icon {
+  padding: 0;
+  background: none;
+  color: var(--on-surface-variant);
+}
+
+/* ============================================================
+   Mensajes de estado
+   ============================================================ */
+
+.alert {
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.alert--error {
+  background-color: color-mix(in srgb, var(--error-container) 25%, transparent);
+  color: var(--on-error-container);
+  border: 1px solid var(--error-container);
+}
+
+.alert--success {
+  background-color: color-mix(in srgb, var(--primary-container) 15%, transparent);
+  color: var(--primary-fixed-dim);
+  border: 1px solid var(--primary-container);
+}
+
+/* ============================================================
+   Chips / badges
+   ============================================================ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chip--primary {
+  background-color: color-mix(in srgb, var(--primary-container) 15%, transparent);
+  color: var(--primary-container);
+}
+
+.chip--danger {
+  background-color: color-mix(in srgb, var(--error) 15%, transparent);
+  color: var(--error);
+}

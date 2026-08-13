@@ -1,0 +1,94 @@
+<div class="auth-page">
+  <div class="auth-card glass-card glass-card--inner-stroke">
+    <div class="auth-card__header">
+      <h1 class="text-headline-lg-mobile">Crear Cuenta</h1>
+      <p class="text-body-md text-on-surface-variant">Comienza tu viaje hacia el crecimiento financiero.</p>
+    </div>
+
+    @if (errorMessage) {
+      <p class="alert alert--error">{{ errorMessage }}</p>
+    }
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+      <div
+        class="form-field"
+        [class.form-field--error]="form.controls.email.invalid && form.controls.email.touched"
+      >
+        <label class="form-field__label text-label-sm" for="email">Correo Electrónico</label>
+        <div class="form-field__input-group">
+          <span class="material-symbols-outlined form-field__icon">mail</span>
+          <input
+            id="email"
+            class="form-field__input"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="correo@ejemplo.com"
+          />
+        </div>
+        @if (form.controls.email.invalid && form.controls.email.touched) {
+          <small class="form-field__hint">Introduce un correo electrónico válido.</small>
+        }
+      </div>
+
+      <div
+        class="form-field"
+        [class.form-field--error]="form.controls.password.invalid && form.controls.password.touched"
+      >
+        <label class="form-field__label text-label-sm" for="password">Contraseña</label>
+        <div class="form-field__input-group">
+          <span class="material-symbols-outlined form-field__icon">lock</span>
+          <input
+            id="password"
+            class="form-field__input"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="new-password"
+            placeholder="••••••••"
+          />
+          <button type="button" class="form-field__toggle" (click)="togglePassword()" [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <span class="material-symbols-outlined">{{ showPassword ? 'visibility_off' : 'visibility' }}</span>
+          </button>
+        </div>
+        @if (form.controls.password.errors?.['minlength'] && form.controls.password.touched) {
+          <small class="form-field__hint">La contraseña debe tener al menos 8 caracteres.</small>
+        } @else if (form.controls.password.errors?.['letterAndNumber'] && form.controls.password.touched) {
+          <small class="form-field__hint">La contraseña debe contener al menos una letra y un número.</small>
+        }
+      </div>
+
+      <div
+        class="form-field"
+        [class.form-field--error]="form.controls.confirmPassword.invalid && form.controls.confirmPassword.touched"
+      >
+        <label class="form-field__label text-label-sm" for="confirmPassword">Confirmar Contraseña</label>
+        <div class="form-field__input-group">
+          <span class="material-symbols-outlined form-field__icon">lock</span>
+          <input
+            id="confirmPassword"
+            class="form-field__input"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+            placeholder="••••••••"
+          />
+        </div>
+        @if (form.errors?.['passwordsMismatch'] && form.controls.confirmPassword.touched) {
+          <small class="form-field__hint">Las contraseñas no coinciden.</small>
+        }
+      </div>
+
+      <button type="submit" class="btn btn--primary auth-submit" [disabled]="submitting">
+        {{ submitting ? 'Creando cuenta…' : 'Crear Cuenta' }}
+        <span class="material-symbols-outlined material-symbols-outlined--filled">arrow_forward</span>
+      </button>
+    </form>
+
+    <div class="auth-card__footer">
+      <p class="text-body-md text-on-surface-variant">
+        ¿Ya tienes una cuenta?
+        <a class="auth-link" routerLink="/login">Iniciar Sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

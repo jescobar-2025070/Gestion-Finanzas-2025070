@@ -1,0 +1,21 @@
+<section class="page-container dashboard">
+  <div class="glass-card dashboard__header">
+    <h1 class="text-headline-lg">Dashboard</h1>
+    <p class="text-body-md text-on-surface-variant">
+      Bienvenido, <strong class="text-on-surface">{{ authService.user()?.email }}</strong>.
+    </p>
+    <p class="text-body-md text-on-surface-variant">
+      Tu rol actual es
+      <span class="chip chip--primary">{{ authService.user()?.roles?.join(', ') }}</span>.
+    </p>
+  </div>
+
+  <div class="glass-card dashboard__placeholder">
+    <span class="material-symbols-outlined dashboard__icon">query_stats</span>
+    <h2 class="text-title-md">Sin datos todavía</h2>
+    <p class="text-body-md text-on-surface-variant">
+      En esta etapa aún no se implementan los periodos financieros, movimientos, presupuestos ni
+      objetivos. Esta vista se ampliará en las siguientes etapas.
+    </p>
+  </div>
+</section>

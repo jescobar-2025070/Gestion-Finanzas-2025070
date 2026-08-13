@@ -1,0 +1,28 @@
+<header class="navbar">
+  <div class="navbar__inner">
+    <span class="navbar__brand font-display">Valora Finanzas</span>
+
+    @if (authService.isAuthenticated()) {
+      <nav class="navbar__links">
+        <a
+          routerLink="/dashboard"
+          routerLinkActive="navbar__link--active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >Dashboard</a>
+        @if (authService.hasRole('ADMIN')) {
+          <a routerLink="/admin" routerLinkActive="navbar__link--active">Administración</a>
+        }
+      </nav>
+      <div class="navbar__user">
+        <span class="navbar__email">{{ authService.user()?.email }}</span>
+        <span class="chip chip--primary">{{ authService.user()?.roles?.join(', ') }}</span>
+        <button type="button" class="btn btn--outline btn--sm" (click)="logout()">Cerrar sesión</button>
+      </div>
+    } @else {
+      <nav class="navbar__links navbar__links--auth">
+        <a routerLink="/login" routerLinkActive="navbar__link--active">Iniciar sesión</a>
+        <a routerLink="/register" routerLinkActive="navbar__link--active">Registrarse</a>
+      </nav>
+    }
+  </div>
+</header>
