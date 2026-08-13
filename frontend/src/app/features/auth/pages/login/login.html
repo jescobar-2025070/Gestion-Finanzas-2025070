@@ -1,0 +1,54 @@
+<div class="auth-page">
+  <div class="auth-wrap">
+    <div class="auth-header">
+      <h2 class="text-headline-lg-mobile auth-title">Iniciar Sesión</h2>
+      <p class="text-body-md text-on-surface-variant">Bienvenido de nuevo a Valora Finanzas</p>
+    </div>
+
+    @if (successMessage) {
+      <p class="alert alert--success">{{ successMessage }}</p>
+    }
+    @if (errorMessage) {
+      <p class="alert alert--error">{{ errorMessage }}</p>
+    }
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-field">
+        <label class="form-field__label text-label-sm" for="email">Correo Electrónico</label>
+        <input
+          id="email"
+          class="input"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="ejemplo@correo.com"
+        />
+      </div>
+
+      <div class="form-field">
+        <div class="form-field__row">
+          <label class="form-field__label text-label-sm" for="password">Contraseña</label>
+          <a class="form-field__link text-label-sm" href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        <input
+          id="password"
+          class="input"
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <button type="submit" class="btn btn--primary auth-submit" [disabled]="submitting">
+        {{ submitting ? 'Entrando…' : 'Entrar' }}
+        <span class="material-symbols-outlined material-symbols-outlined--filled">arrow_forward</span>
+      </button>
+    </form>
+
+    <p class="auth-footer">
+      ¿No tienes una cuenta?
+      <a class="auth-link" routerLink="/register">Regístrate</a>
+    </p>
+  </div>
+</div>
