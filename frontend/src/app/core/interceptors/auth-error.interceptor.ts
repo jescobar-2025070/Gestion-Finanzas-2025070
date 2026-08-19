@@ -10,12 +10,12 @@ export const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      const isAuthEndpoint = req.url.includes('/auth/');
-      const isLoginPage = router.url.startsWith('/login');
-
-      if (error.status === 401 && !isAuthEndpoint && !isLoginPage) {
-        authService.clearSession();
-        void router.navigate(['/login']);
+      if (error.status === 401) {
+        const isAuthEndpoint = req.url.includes('/auth/');
+        if (!isAuthEndpoint) {
+          authService.clearSession();
+          void router.navigate(['/login']);
+        }
       }
       return throwError(() => error);
     }),

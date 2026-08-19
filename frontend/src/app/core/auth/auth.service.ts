@@ -16,6 +16,7 @@ export class AuthService {
   readonly isAuthenticated = computed(() => this.status() === 'authenticated');
 
   private initPromise: Promise<void> | null = null;
+  sessionExpired = false;
 
   ensureInitialized(): Promise<void> {
     if (!this.initPromise) {
@@ -29,7 +30,10 @@ export class AuthService {
       const response = await firstValueFrom(this.api.get<AuthResponse>('/auth/me'));
       this.user.set(response.user);
       this.status.set('authenticated');
-    } catch {
+    } catch (error: any) {
+      if (error?.error?.error?.code === 'TOKEN_EXPIRED') {
+        this.sessionExpired = true;
+      }
       this.clearSession();
     }
   }

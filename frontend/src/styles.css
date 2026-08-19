@@ -1,35 +1,35 @@
 /* ============================================================
-   Valora Finanzas — Design System (DESIGN.md)
-   "Deep Sea to Electric Neon" · Material Design 3 · Glassmorphism
+   Koinu Finance — Design System
+   "Deep Sea to Electric Neon" · Glassmorphism · Clay Style
    ============================================================ */
 
 :root {
   /* ---- Colores (design tokens) ---- */
-  --background: #101418;
-  --surface: #101418;
-  --surface-dim: #101418;
-  --surface-bright: #363a3e;
-  --surface-container-lowest: #0b0f13;
-  --surface-container-low: #181c20;
-  --surface-container: #1c2024;
-  --surface-container-high: #262a2f;
-  --surface-container-highest: #31353a;
-  --on-surface: #e0e3e8;
-  --on-surface-variant: #b9cbbc;
-  --outline: #849587;
-  --outline-variant: #3b4a3f;
+  --background: #040c1c;
+  --surface: #040c1c;
+  --surface-dim: #040c1c;
+  --surface-bright: #353a3f;
+  --surface-container-lowest: #0a0f13;
+  --surface-container-low: #171c21;
+  --surface-container: #1b2025;
+  --surface-container-high: #252a30;
+  --surface-container-highest: #30353b;
+  --on-surface: #f8fafc;
+  --on-surface-variant: #cbd5e1;
+  --outline: #475569;
+  --outline-variant: #334155;
 
-  --primary: #f4fff3;
-  --on-primary: #00391f;
-  --primary-container: #00ff9d;
-  --on-primary-container: #007143;
-  --primary-fixed: #56ffa8;
-  --primary-fixed-dim: #00e38b;
+  --primary: #04a8fa;
+  --on-primary: #003351;
+  --primary-container: #04a8fa;
+  --on-primary-container: #003a5a;
+  --primary-fixed: #5cc8ff;
+  --primary-fixed-dim: #04a8fa;
 
-  --secondary: #bdf4ff;
-  --on-secondary: #00363d;
-  --secondary-container: #00e3fd;
-  --on-secondary-container: #00616d;
+  --secondary: #2972ef;
+  --on-secondary: #002d6e;
+  --secondary-container: #0061de;
+  --on-secondary-container: #e1e7ff;
 
   --error: #ffb4ab;
   --on-error: #690005;
@@ -37,7 +37,7 @@
   --on-error-container: #ffdad6;
 
   /* ---- Tipografía ---- */
-  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* ---- Radios ---- */
@@ -45,11 +45,12 @@
   --radius: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
   --radius-full: 9999px;
 
   /* ---- Sombras ---- */
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 24px rgba(0, 255, 157, 0.25);
+  --shadow-glow: 0 0 24px rgba(4, 168, 250, 0.25);
 }
 
 *,
@@ -77,12 +78,12 @@ body {
 }
 
 a {
-  color: var(--secondary-container);
+  color: var(--primary);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--primary-fixed-dim);
+  color: var(--primary-fixed);
 }
 
 /* ============================================================
@@ -116,9 +117,9 @@ a:hover {
 }
 
 .text-title-md {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 28px;
 }
 
 .text-body-md {
@@ -127,9 +128,15 @@ a:hover {
   line-height: 24px;
 }
 
+.text-body-sm {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .text-label-sm {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 16px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -149,6 +156,13 @@ a:hover {
 
 .text-error {
   color: var(--error);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #04a8fa, #2972ef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .tabular-nums {
@@ -203,6 +217,27 @@ a:hover {
     inset 1px 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+.clay-panel {
+  background: rgba(15, 20, 25, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 2rem;
+  box-shadow: 
+    20px 20px 40px 0px rgba(0, 0, 0, 0.4), 
+    -10px -10px 30px 0px rgba(255, 255, 255, 0.02),
+    inset 2px 2px 10px 0px rgba(255, 255, 255, 0.05),
+    inset -2px -2px 10px 0px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-bubble {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
 .page-container {
   width: 100%;
   max-width: 1280px;
@@ -223,33 +258,47 @@ a:hover {
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .form-field__label {
-  color: var(--on-surface-variant);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  margin-left: 8px;
 }
 
 .form-field__input-group {
   display: flex;
   align-items: center;
-  background-color: var(--surface-container-lowest);
-  border: 1px solid var(--outline-variant);
-  border-radius: var(--radius);
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 1rem;
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
 .form-field__input-group:focus-within {
-  border-color: var(--primary-container);
-  box-shadow: 0 0 0 1px var(--primary-container);
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.5),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.05),
+    0 0 0 2px #04a8fa;
+  background: rgba(30, 41, 59, 0.6);
 }
 
 .form-field__icon {
-  color: var(--on-surface-variant);
+  color: #64748b;
   margin-left: 16px;
   font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.form-field__input-group:focus-within .form-field__icon {
+  color: #04a8fa;
 }
 
 .form-field__input {
@@ -257,34 +306,38 @@ a:hover {
   background: transparent;
   border: none;
   outline: none;
-  color: var(--on-surface);
+  color: #f8fafc;
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 24px;
-  padding: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 16px;
 }
 
 .form-field__input::placeholder {
-  color: color-mix(in srgb, var(--on-surface-variant) 60%, transparent);
+  color: #64748b;
 }
 
 .form-field__toggle {
   background: none;
   border: none;
-  color: var(--on-surface-variant);
+  color: #64748b;
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 16px;
+  transition: color 0.3s ease;
 }
 
 .form-field__toggle:hover {
-  color: var(--on-surface);
+  color: #04a8fa;
 }
 
 .form-field--error .form-field__input-group {
   border-color: var(--error);
-  box-shadow: 0 0 0 1px var(--error);
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.03),
+    0 0 0 2px var(--error);
 }
 
 .form-field__hint {
@@ -342,7 +395,8 @@ a:hover {
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    transform 0.2s ease;
 }
 
 .btn:disabled {
@@ -357,13 +411,29 @@ a:hover {
 }
 
 .btn--primary {
-  background-color: var(--primary-container);
-  color: var(--on-primary-container);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #04a8fa, #2972ef);
+  color: white;
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    -4px -4px 12px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.2),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background-color: var(--primary-fixed);
+  transform: translateY(-2px);
+  box-shadow: 
+    10px 10px 20px rgba(0, 0, 0, 0.5),
+    -4px -4px 12px rgba(255, 255, 255, 0.08),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    inset 4px 4px 10px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.1);
 }
 
 .btn--primary:focus-visible {
@@ -373,12 +443,12 @@ a:hover {
 
 .btn--outline {
   background: transparent;
-  color: var(--secondary-container);
-  border: 1px solid var(--secondary-container);
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }
 
 .btn--outline:hover:not(:disabled) {
-  background-color: color-mix(in srgb, var(--secondary-container) 12%, transparent);
+  background-color: color-mix(in srgb, var(--primary) 12%, transparent);
 }
 
 .btn--danger {
@@ -402,8 +472,11 @@ a:hover {
    ============================================================ */
 
 .alert {
-  padding: 8px 12px;
-  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
   font-size: 14px;
   line-height: 20px;
 }
@@ -415,9 +488,20 @@ a:hover {
 }
 
 .alert--success {
-  background-color: color-mix(in srgb, var(--primary-container) 15%, transparent);
-  color: var(--primary-fixed-dim);
-  border: 1px solid var(--primary-container);
+  background-color: color-mix(in srgb, #00ff9d 15%, transparent);
+  color: #00ff9d;
+  border: 1px solid #00ff9d;
+}
+
+.alert--warning {
+  background-color: color-mix(in srgb, #ff9800 15%, transparent);
+  color: #ffcc80;
+  border: 1px solid #ff9800;
+}
+
+.alert__icon {
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
 /* ============================================================
@@ -445,4 +529,51 @@ a:hover {
 .chip--danger {
   background-color: color-mix(in srgb, var(--error) 15%, transparent);
   color: var(--error);
+}
+
+/* ============================================================
+   Animaciones
+   ============================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out 3s infinite;
+}
+
+.animate-blob {
+  animation: blob 10s infinite;
 }
