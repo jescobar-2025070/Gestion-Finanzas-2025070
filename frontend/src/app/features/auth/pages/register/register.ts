@@ -6,10 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/auth/auth.service';
-import { ApiErrorResponse } from '../../../../core/auth/auth.models';
 
 @Component({
   selector: 'app-register',
@@ -43,7 +41,7 @@ export class Register {
 
   submit(): void {
     if (this.form.invalid) {
-      this.errorMessage = 'Revisa los campos del formulario.';
+      this.errorMessage = 'Por favor, revisa los campos marcados antes de continuar.';
       return;
     }
 
@@ -54,17 +52,13 @@ export class Register {
     this.authService
       .register(email, password)
       .then(() => this.router.navigate(['/login'], { state: { registered: true } }))
-      .catch((error: HttpErrorResponse) => {
-        this.errorMessage = this.extractMessage(error) ?? 'No se pudo completar el registro.';
+      .catch((error: any) => {
+        const msg = error?.error?.error?.message;
+        this.errorMessage = msg || 'No se pudo completar el registro. Inténtalo de nuevo.';
       })
       .finally(() => {
         this.submitting = false;
       });
-  }
-
-  private extractMessage(error: HttpErrorResponse): string | null {
-    const body = error.error as ApiErrorResponse | undefined;
-    return body?.error?.message ?? null;
   }
 
   private letterAndNumber(control: AbstractControl): Record<string, boolean> | null {
