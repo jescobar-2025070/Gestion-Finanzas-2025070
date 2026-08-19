@@ -6,9 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../../core/auth/auth.service';
-import { ApiErrorResponse } from '../../../../core/auth/auth.models';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +25,19 @@ export class Login {
 
   protected errorMessage: string | null = null;
   protected successMessage: string | null = null;
+  protected sessionExpiredMessage: string | null = null;
   protected submitting = false;
+  protected showPassword = false;
 
   constructor() {
-    if (this.router.getCurrentNavigation()?.extras.state?.['registered']) {
-      this.successMessage = 'Cuenta creada correctamente. Inicia sesión.';
+    const nav = this.router.getCurrentNavigation();
+    if (nav?.extras.state?.['registered']) {
+      this.successMessage = 'Cuenta creada correctamente. Ya puedes iniciar sesión.';
+    }
+
+    if (this.authService.sessionExpired) {
+      this.authService.sessionExpired = false;
+      this.sessionExpiredMessage = 'Tu sesión ha expirado. Por favor, inicia sesión nuevamente para continuar.';
     }
   }
 
@@ -43,21 +49,22 @@ export class Login {
 
     this.submitting = true;
     this.errorMessage = null;
+    this.sessionExpiredMessage = null;
     const { email, password } = this.form.getRawValue();
 
     this.authService
       .login(email, password)
       .then(() => this.router.navigate(['/dashboard']))
-      .catch((error: HttpErrorResponse) => {
-        this.errorMessage = this.extractMessage(error) ?? 'No se pudo iniciar sesión.';
+      .catch((error: any) => {
+        const msg = error?.error?.error?.message;
+        this.errorMessage = msg || 'No se pudo iniciar sesión. Verifica tus credenciales.';
       })
       .finally(() => {
         this.submitting = false;
       });
   }
 
-  private extractMessage(error: HttpErrorResponse): string | null {
-    const body = error.error as ApiErrorResponse | undefined;
-    return body?.error?.message ?? null;
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
   }
 }
